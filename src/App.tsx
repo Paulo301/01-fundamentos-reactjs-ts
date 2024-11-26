@@ -1,5 +1,5 @@
 import { Header } from "./components/Header";
-import { Post } from "./components/Post";
+import { Post, PostType } from "./components/Post";
 
 import styles from "./App.module.css";
 
@@ -43,7 +43,7 @@ const posts = [
     ],
     publishedAt: new Date("2024-11-19 10:00:00"),
   },
-];
+] satisfies PostType[];
 
 export function App() {
   return (
@@ -54,14 +54,7 @@ export function App() {
         <Sidebar />
         <main>
           {posts.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                author={post.author}
-                content={post.content}
-                publishedAt={post.publishedAt}
-              />
-            );
+            return <Post key={post.id} post={post} />;
           })}
         </main>
       </div>
